@@ -29,7 +29,7 @@ public class CowTimer {
 		 * 2. Count down the minutes, print the current minute then sleep for the number
 		 * of minutes using Thread.sleep(int milliseconds).
 		 */
-		System.out.println("Cow time set to " + minutes + " minutes.");
+		System.out.println(minutes + " minutes.");
 		Thread.sleep(minutes);
 		playSound("moo.wav");
 		/*
