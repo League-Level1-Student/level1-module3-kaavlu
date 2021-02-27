@@ -5,14 +5,21 @@ package _03_jars._2_jukebox;
  */
 
 
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -26,8 +33,9 @@ public class Jukebox implements Runnable {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+    	Song song1 = new Song("hello");
 		// 3. Play the Song
+    	song1.play();
 
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
@@ -36,6 +44,19 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(300,300));
+		
+		JPanel panel = new JPanel();
+
+		JButton button = new JButton();
+		button.setPreferredSize(new Dimension(50,25));
+		button.setLocation(250, 50);
+		panel.add(button);
+		frame.add(panel);
+		frame.pack();
     }
     
     
@@ -65,6 +86,7 @@ class Song {
 	 * 		new	Song("http://freedownloads.last.fm/download/569264057/Get%2BGot.mp3"); 
 	 * </code>
 	 */
+	new Song("everywhere.mp3"); 
 	public Song(String songAddress) {
 		this.songAddress = songAddress;
 	}

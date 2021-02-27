@@ -13,9 +13,14 @@ public class NetflixQueue {
 	
 	ArrayList<Movie> movies = new ArrayList<Movie>();
 	
-	public Movie getBestMovie(){
+	public void get1BestMovie(){
 		this.sortMoviesByRating();
-		return movies.get(0);
+		System.out.println("the best movie is...." + movies.get(0));
+	}
+	
+	public void get2BestMovie(){
+		this.sortMoviesByRating();
+		System.out.println("the second best movie is...." + movies.get(1));
 	}
 
 	public void addMovie(Movie movie) {
