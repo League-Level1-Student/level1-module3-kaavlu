@@ -4,8 +4,8 @@ package _03_jars._2_jukebox;
  *    Level 1
  */
 
-
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 
@@ -27,44 +27,60 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, ActionListener {
 
-    public void run() {
+	public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-    	Song song1 = new Song("hello");
+		
 		// 3. Play the Song
-    	song1.play();
+		
 
 		/*
-		 * 4. Create a user interface for your Jukebox so that the user can to
-		 * choose which song to play. You can use can use a different button for
-		 * each song, or a picture of the album cover. When the button or album
-		 * cover is clicked, stop the currently playing song, and play the one
-		 * that was selected.
+		 * 4. Create a user interface for your Jukebox so that the user can to choose
+		 * which song to play. You can use can use a different button for each song, or
+		 * a picture of the album cover. When the button or album cover is clicked, stop
+		 * the currently playing song, and play the one that was selected.
 		 */
-    	JFrame frame = new JFrame();
+		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(300,300));
-		
+		frame.setPreferredSize(new Dimension(100, 200));
+
 		JPanel panel = new JPanel();
 
 		JButton button = new JButton();
-		button.setPreferredSize(new Dimension(50,25));
-		button.setLocation(250, 50);
+		JButton button1 = new JButton();
+		button.addActionListener(this);
+		button1.addActionListener(this);
+		button.setPreferredSize(new Dimension(50, 25));
+		button1.setPreferredSize(new Dimension(50, 25));
 		panel.add(button);
+		panel.add(button1);
+
 		frame.add(panel);
 		frame.pack();
-    }
-    
-    
+	}
+	Song song2 = new Song("http://freedownloads.last.fm/download/569264057/Get%2BGot.mp3"); 
+	Song song1 = new Song("http://freedownloads.last.fm/download/569264057/Get%2BGot.mp3"); 
 	/* Use this method to add album covers to your Panel. */
 	private JLabel loadImage(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		song2.stop();
+		song1.play();
+	}
+	public void actionPerformed1(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		song1.stop();
+		song2.play();
 	}
 
 }
@@ -77,8 +93,7 @@ class Song {
 	private InputStream songStream;
 
 	/**
-	 * Songs can be constructed from files on your computer or Internet
-	 * addresses.
+	 * Songs can be constructed from files on your computer or Internet addresses.
 	 * 
 	 * Examples: <code> 
 	 * 		new Song("everywhere.mp3"); 	//from default package 
@@ -86,7 +101,8 @@ class Song {
 	 * 		new	Song("http://freedownloads.last.fm/download/569264057/Get%2BGot.mp3"); 
 	 * </code>
 	 */
-	new Song("everywhere.mp3"); 
+	
+
 	public Song(String songAddress) {
 		this.songAddress = songAddress;
 	}
@@ -154,4 +170,3 @@ class Song {
 		}
 	}
 }
-
