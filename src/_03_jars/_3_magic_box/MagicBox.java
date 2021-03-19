@@ -70,6 +70,8 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		}
 	}
 
+	
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(backgroundImage, 0, 0, null);
@@ -78,15 +80,22 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		playSoundFromInternet();
+		MediaPalace.speak("hello");
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		int color = backgroundImage.getRGB(e.getX(), e.getY());
+		if(color == -5142949) {
+			MediaPalace.speak("cool");
+		}else if(color == -1188447) {
+			MediaPalace.speak("nice");
+		}else if(color == -2047618) {
+			MediaPalace.speak("awesome");
+		}
 	}
-
+	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -104,6 +113,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }
 
